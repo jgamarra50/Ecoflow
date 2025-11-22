@@ -160,30 +160,30 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <!-- Pickup Option -->
-                            <label
+                            <div wire:click="$set('deliveryMethod', 'pickup')"
                                 class="relative border rounded-lg p-4 cursor-pointer hover:bg-gray-50 {{ $deliveryMethod === 'pickup' ? 'border-green-500 bg-green-50 ring-1 ring-green-500' : 'border-gray-200' }}">
                                 <div class="flex items-center">
-                                    <input type="radio" wire:model.live="deliveryMethod" value="pickup"
-                                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                    <input type="radio" checked="{{ $deliveryMethod === 'pickup' ? 'checked' : '' }}"
+                                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 pointer-events-none">
                                     <div class="ml-3">
                                         <span class="block text-sm font-medium text-gray-900">Recoger en Sede</span>
                                         <span class="block text-sm text-gray-500">Ve a una de nuestras estaciones</span>
                                     </div>
                                 </div>
-                            </label>
+                            </div>
 
                             <!-- Delivery Option -->
-                            <label
+                            <div wire:click="$set('deliveryMethod', 'delivery')"
                                 class="relative border rounded-lg p-4 cursor-pointer hover:bg-gray-50 {{ $deliveryMethod === 'delivery' ? 'border-green-500 bg-green-50 ring-1 ring-green-500' : 'border-gray-200' }}">
                                 <div class="flex items-center">
-                                    <input type="radio" wire:model.live="deliveryMethod" value="delivery"
-                                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                    <input type="radio" checked="{{ $deliveryMethod === 'delivery' ? 'checked' : '' }}"
+                                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 pointer-events-none">
                                     <div class="ml-3">
                                         <span class="block text-sm font-medium text-gray-900">Entrega a Domicilio</span>
                                         <span class="block text-sm text-gray-500">Te llevamos el vehículo</span>
                                     </div>
                                 </div>
-                            </label>
+                            </div>
                         </div>
 
                         <!-- Conditional Fields -->
@@ -217,30 +217,30 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <!-- Return at Station Option -->
-                        <label
+                        <div wire:click="$set('returnMethod', 'return')"
                             class="relative border rounded-lg p-4 cursor-pointer hover:bg-gray-50 {{ $returnMethod === 'return' ? 'border-green-500 bg-green-50 ring-1 ring-green-500' : 'border-gray-200' }}">
                             <div class="flex items-center">
-                                <input type="radio" wire:model.live="returnMethod" value="return"
-                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                <input type="radio" checked="{{ $returnMethod === 'return' ? 'checked' : '' }}"
+                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 pointer-events-none">
                                 <div class="ml-3">
                                     <span class="block text-sm font-medium text-gray-900">Devolver en Sede</span>
                                     <span class="block text-sm text-gray-500">Lleva el vehículo a una estación</span>
                                 </div>
                             </div>
-                        </label>
+                        </div>
 
                         <!-- Home Pickup Option -->
-                        <label
+                        <div wire:click="$set('returnMethod', 'pickup')"
                             class="relative border rounded-lg p-4 cursor-pointer hover:bg-gray-50 {{ $returnMethod === 'pickup' ? 'border-green-500 bg-green-50 ring-1 ring-green-500' : 'border-gray-200' }}">
                             <div class="flex items-center">
-                                <input type="radio" wire:model.live="returnMethod" value="pickup"
-                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                <input type="radio" checked="{{ $returnMethod === 'pickup' ? 'checked' : '' }}"
+                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 pointer-events-none">
                                 <div class="ml-3">
                                     <span class="block text-sm font-medium text-gray-900">Recoger a Domicilio</span>
                                     <span class="block text-sm text-gray-500">Vamos por el vehículo</span>
                                 </div>
                             </div>
-                        </label>
+                        </div>
                     </div>
 
                     <!-- Conditional Fields -->

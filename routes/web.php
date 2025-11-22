@@ -15,6 +15,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reservations/new', function () {
         return view('reservations.new');
     })->name('reservations.new');
+
+    Route::get('/reservations', \App\Livewire\MyReservations::class)
+        ->name('reservations.index');
+    
+    Route::get('/reservations/{reservation}/receipt', function ($reservationId) {
+        $reservation = \App\Models\Reservation::with(['vehicle', 'station', 'user'])
+            ->findOrFail($reservationId);
+        
+        // Verify ownership
+        if ($reservation->user_id !== auth()->id()) {
+            abort(403);
+        }
+        
+        return view('reservations.receipt', compact('reservation'));
+    })->name('reservations.receipt');
 });
 
 Route::middleware('auth')->group(function () {

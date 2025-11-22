@@ -85,4 +85,40 @@ class Reservation extends Model
             default => ucfirst($this->status),
         };
     }
+
+    public function canBeCancelled()
+    {
+        return in_array($this->status, ['pending', 'confirmed']);
+    }
+
+    public function getDurationInDays()
+    {
+        return max(1, $this->start_date->diffInDays($this->end_date));
+    }
+
+    public function getFormattedDates()
+    {
+        return [
+            'start' => $this->start_date->format('d M Y, H:i'),
+            'end' => $this->end_date->format('d M Y, H:i'),
+            'start_short' => $this->start_date->format('d/m/Y'),
+            'end_short' => $this->end_date->format('d/m/Y'),
+        ];
+    }
+
+    public function getPriceBreakdown()
+    {
+        $days = $this->getDurationInDays();
+        $basePrice = $days * 50000; // $50,000 COP per day
+        $deliveryFee = ($this->delivery_method === 'delivery') ? 10000 : 0;
+        $pickupFee = 0; // Could add return pickup fee logic here
+        
+        return [
+            'days' => $days,
+            'base_price' => $basePrice,
+            'delivery_fee' => $deliveryFee,
+            'pickup_fee' => $pickupFee,
+            'total' => $this->total_price,
+        ];
+    }
 }

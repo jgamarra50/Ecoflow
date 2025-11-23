@@ -41,18 +41,22 @@
                                 class="text-gray-300 hover:text-white">
                                 Dashboard
                             </x-nav-link>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-white">
+                            <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')"
+                                class="text-gray-300 hover:text-white">
                                 Usuarios
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-white">
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.vehicles')" :active="request()->routeIs('admin.vehicles')"
+                                class="text-gray-300 hover:text-white">
                                 Vehículos
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-white">
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.maintenances')" :active="request()->routeIs('admin.maintenances')"
+                                class="text-gray-300 hover:text-white">
+                                Mantenimientos
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports')"
+                                class="text-gray-300 hover:text-white">
                                 Reportes
-                            </a>
+                            </x-nav-link>
                         </div>
                     </div>
 

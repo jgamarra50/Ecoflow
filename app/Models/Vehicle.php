@@ -59,4 +59,15 @@ class Vehicle extends Model
             default => '🚲',
         };
     }
+
+    public function getStatusLabel()
+    {
+        return match($this->status) {
+            'available' => 'Disponible',
+            'reserved' => 'Reservado',
+            'maintenance' => 'Mantenimiento',
+            'damaged' => 'Dañado',
+            default => ucfirst($this->status),
+        };
+    }
 }

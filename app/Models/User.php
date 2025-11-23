@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'role',
+        'is_active',
     ];
 
     /**
@@ -47,7 +48,16 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * Relationships
+     */
+    public function reservations()
+    {
+        return $this->hasMany(\App\Models\Reservation::class);
     }
 
     /**
@@ -60,5 +70,27 @@ class User extends Authenticatable
             $this->role = $roleName;
             $this->save();
         }
+    }
+
+    /**
+     * Helper methods
+     */
+    public function isActive()
+    {
+        return $this->is_active;
+    }
+
+    public function getStatusLabel()
+    {
+        return $this->is_active ? 'Activo' : 'Inactivo';
+    }
+
+    public function getInitials()
+    {
+        $words = explode(' ', $this->name);
+        if (count($words) >= 2) {
+            return strtoupper(substr($words[0], 0, 1) . substr($words[1], 0, 1));
+        }
+        return strtoupper(substr($this->name, 0, 2));
     }
 }

@@ -41,6 +41,10 @@ Route::middleware('auth')->group(function () {
 // Admin Routes
 Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', \App\Livewire\AdminDashboard::class)->name('admin.dashboard');
+    Route::get('/vehicles', \App\Livewire\VehiclesManager::class)->name('admin.vehicles');
+    Route::get('/users', \App\Livewire\UsersManager::class)->name('admin.users');
+    Route::get('/maintenances', \App\Livewire\MaintenancesManager::class)->name('admin.maintenances');
+    Route::get('/reports', \App\Livewire\ReportsManager::class)->name('admin.reports');
 });
 
 require __DIR__.'/auth.php';

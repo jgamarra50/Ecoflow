@@ -49,6 +49,11 @@ class Vehicle extends Model
         return $this->hasOne(Telemetry::class)->latestOfMany();
     }
 
+    public function latestTelemetry()
+    {
+        return $this->telemetry();
+    }
+
     // Helper methods
     public function isAvailable()
     {

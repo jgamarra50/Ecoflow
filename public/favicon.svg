@@ -1,0 +1,14 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background circle -->
+    <circle cx="32" cy="32" r="32" fill="#10B981"/>
+    
+    <!-- Leaf symbol -->
+    <g transform="translate(22, 18)">
+        <path d="M 10 4 Q 2 4, 2 12 Q 2 20, 10 20 Q 6 12, 10 4 Z" fill="white" opacity="0.9"/>
+        <path d="M 10 4 Q 18 4, 18 12 Q 18 20, 10 20 Q 14 12, 10 4 Z" fill="white"/>
+        <circle cx="10" cy="12" r="1.5" fill="#10B981"/>
+    </g>
+    
+    <!-- Wave accent -->
+    <path d="M 20 45 Q 28 42, 36 45 T 52 45" stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

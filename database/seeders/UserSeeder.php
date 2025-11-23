@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
         ]);
         $cliente2->assignRole('cliente');
 
-        // Operador users
+        // Operadores de prueba (CON ESTACIONES ASIGNADAS)
         $operador1 = User::create([
             'name' => 'Carlos Rodríguez',
             'email' => 'operador1@test.com',
@@ -56,6 +56,7 @@ class UserSeeder extends Seeder
             'phone' => '3301234567',
             'address' => 'Avenida Quebrada Seca, Bucaramanga',
             'role' => 'operador',
+            'station_id' => 1, // Estación Cabecera
             'email_verified_at' => now(),
         ]);
         $operador1->assignRole('operador');
@@ -67,6 +68,7 @@ class UserSeeder extends Seeder
             'phone' => '3401234567',
             'address' => 'Calle 56 #34-21, Piedecuesta',
             'role' => 'operador',
+            'station_id' => 2, // Estación Cañaveral
             'email_verified_at' => now(),
         ]);
         $operador2->assignRole('operador');

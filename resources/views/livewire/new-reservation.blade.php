@@ -72,7 +72,7 @@
                                 <!-- Selection Indicator -->
                                 @if($selectedVehicleId === $vehicle->id)
                                     <div
-                                        class="absolute top-3 right-3 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                        class="absolute top-3 right-3 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center pointer-events-none">
                                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7" />
@@ -82,12 +82,12 @@
 
                                 <!-- Vehicle Image Placeholder -->
                                 <div
-                                    class="mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-lg h-40 flex items-center justify-center">
+                                    class="mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-lg h-40 flex items-center justify-center pointer-events-none">
                                     <span class="text-6xl">{{ $vehicle->getTypeIcon() }}</span>
                                 </div>
 
                                 <!-- Vehicle Info -->
-                                <div class="space-y-2">
+                                <div class="space-y-2 pointer-events-none">
                                     <h3 class="text-lg font-bold text-gray-800">{{ $vehicle->brand }} {{ $vehicle->model }}</h3>
                                     <p class="text-sm text-gray-600">Placa: {{ $vehicle->plate }}</p>
 
@@ -279,7 +279,8 @@
                             <div>
                                 <p class="text-sm text-gray-500">Vehículo</p>
                                 <p class="font-medium text-gray-900">{{ $this->selectedVehicle->brand }}
-                                    {{ $this->selectedVehicle->model }}</p>
+                                    {{ $this->selectedVehicle->model }}
+                                </p>
                                 <p class="text-sm text-gray-500">{{ $this->selectedVehicle->type }}</p>
                             </div>
 

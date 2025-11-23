@@ -14,6 +14,11 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -36,22 +41,20 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                            <x-nav-link :href="route('operator.dashboard')"
+                                :active="request()->routeIs('operator.dashboard')"
                                 class="text-blue-100 hover:text-white">
                                 Dashboard
                             </x-nav-link>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-blue-100 hover:text-white">
-                                Entregas
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-blue-100 hover:text-white">
-                                Devoluciones
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-blue-100 hover:text-white">
-                                Reportar
-                            </a>
+                            <x-nav-link :href="route('operator.deliveries')"
+                                :active="request()->routeIs('operator.deliveries')"
+                                class="text-blue-100 hover:text-white">
+                                Entregas/Devoluciones
+                            </x-nav-link>
+                            <x-nav-link :href="route('operator.reports')"
+                                :active="request()->routeIs('operator.reports')" class="text-blue-100 hover:text-white">
+                                Reportar Problema
+                            </x-nav-link>
                         </div>
                     </div>
 
@@ -106,6 +109,8 @@
             {{ $slot }}
         </main>
     </div>
+
+    @livewireScripts
 </body>
 
 </html>

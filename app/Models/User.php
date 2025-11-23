@@ -26,6 +26,7 @@ class User extends Authenticatable
         'address',
         'role',
         'is_active',
+        'station_id',
     ];
 
     /**
@@ -58,6 +59,11 @@ class User extends Authenticatable
     public function reservations()
     {
         return $this->hasMany(\App\Models\Reservation::class);
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(\App\Models\Station::class);
     }
 
     /**

@@ -36,22 +36,18 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                            <x-nav-link :href="route('technician.dashboard')" :active="request()->routeIs('technician.dashboard')"
                                 class="text-amber-100 hover:text-white">
                                 Dashboard
                             </x-nav-link>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-amber-100 hover:text-white">
-                                Mantenimientos
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-amber-100 hover:text-white">
+                            <x-nav-link :href="route('technician.vehicles')" :active="request()->routeIs('technician.vehicles')"
+                                class="text-amber-100 hover:text-white">
                                 Vehículos
-                            </a>
-                            <a href="#"
-                                class="inline-flex items-center px-1 pt-1 text-sm font-medium text-amber-100 hover:text-white">
+                            </x-nav-link>
+                            <x-nav-link :href="route('technician.history')" :active="request()->routeIs('technician.history')"
+                                class="text-amber-100 hover:text-white">
                                 Historial
-                            </a>
+                            </x-nav-link>
                         </div>
                     </div>
 

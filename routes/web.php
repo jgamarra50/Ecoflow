@@ -47,4 +47,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(fu
     Route::get('/reports', \App\Livewire\ReportsManager::class)->name('admin.reports');
 });
 
+// Technician Routes
+Route::middleware(['auth', 'verified', 'role:tecnico'])->prefix('technician')->group(function () {
+    Route::get('/dashboard', \App\Livewire\TechnicianDashboard::class)->name('technician.dashboard');
+    Route::get('/vehicles', \App\Livewire\TechnicianVehicles::class)->name('technician.vehicles');
+    Route::get('/history', \App\Livewire\TechnicianHistory::class)->name('technician.history');
+});
+
 require __DIR__.'/auth.php';

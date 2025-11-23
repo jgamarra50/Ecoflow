@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('distance_traveled', 10, 2)->default(0);
             $table->timestamp('last_ping_at');
             $table->timestamps();
+
+            $table->index(['vehicle_id', 'created_at']);
         });
     }
 

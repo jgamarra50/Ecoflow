@@ -26,6 +26,12 @@ return new class extends Migration
             $table->timestamp('completed_at')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
+
+            $table->index('status');
+            $table->index('priority');
+            $table->index('technician_id');
+            $table->index(['status', 'priority']);
+            $table->index('created_at');
         });
     }
 

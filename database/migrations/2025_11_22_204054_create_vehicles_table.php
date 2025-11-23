@@ -21,6 +21,10 @@ return new class extends Migration {
             $table->decimal('current_location_lng', 10, 7)->nullable();
             $table->foreignId('station_id')->nullable()->constrained('stations')->onDelete('set null');
             $table->timestamps();
+
+            $table->index('status');
+            $table->index('type');
+            $table->index(['station_id', 'status']);
         });
     }
 

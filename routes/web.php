@@ -38,4 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Admin Routes
+Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', \App\Livewire\AdminDashboard::class)->name('admin.dashboard');
+});
+
 require __DIR__.'/auth.php';

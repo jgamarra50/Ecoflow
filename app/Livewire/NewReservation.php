@@ -172,22 +172,32 @@ class NewReservation extends Component
 
     public function submitReservation()
     {
-        $reservation = Reservation::create([
-            'user_id' => Auth::id(),
-            'vehicle_id' => $this->selectedVehicleId,
-            'start_date' => $this->startDate,
-            'end_date' => $this->endDate,
-            'delivery_method' => $this->deliveryMethod,
-            'delivery_address' => $this->deliveryMethod === 'delivery' ? $this->deliveryAddress : null,
-            'station_id' => $this->deliveryMethod === 'pickup' ? $this->pickupStationId : null,
-            'status' => 'pending',
-            'total_price' => $this->totalPrice,
+        // Debug log
+        \Log::info('submitReservation called');
+        
+        // Store reservation data in session for checkout
+        session([
+            'reservation_data' => [
+                'user_id' => Auth::id(),
+                'vehicle_id' => $this->selectedVehicleId,
+                'start_date' => $this->startDate,
+                'end_date' => $this->endDate,
+                'delivery_method' => $this->deliveryMethod,
+                'delivery_address' => $this->deliveryMethod === 'delivery' ? $this->deliveryAddress : null,
+                'station_id' => $this->deliveryMethod === 'pickup' ? $this->pickupStationId : null,
+                'return_method' => $this->returnMethod,
+                'return_address' => $this->returnMethod === 'pickup' ? $this->returnAddress : null,
+                'return_station_id' => $this->returnMethod === 'return' ? $this->returnStationId : null,
+                'total_price' => $this->totalPrice,
+                'days' => $this->days,
+            ]
         ]);
 
-        // Dispatch browser event for SweetAlert2
-        $this->dispatch('reservation-created');
+        // Flash success message
+        session()->flash('checkout_ready', true);
         
-        // Redirect after delay handled by frontend
+        // Use JavaScript redirect
+        $this->js('window.location.href = "' . route('checkout.payment') . '"');
     }
 
     public function getSelectedVehicleProperty()

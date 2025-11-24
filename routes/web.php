@@ -34,6 +34,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('reservations.new');
     })->name('reservations.new');
 
+    // Checkout Payment Routes
+    Route::get('/checkout/payment', \App\Livewire\CheckoutPayment::class)->name('checkout.payment');
+    Route::get('/checkout/success/{reservation}', function ($reservationId) {
+        $reservation = \App\Models\Reservation::with(['vehicle', 'station', 'user'])
+            ->findOrFail($reservationId);
+        
+        // Verify ownership
+        if ($reservation->user_id !== auth()->id()) {
+            abort(403);
+        }
+        
+        return view('checkout.success', compact('reservation'));
+    })->name('checkout.success');
+
     Route::get('/reservations', \App\Livewire\MyReservations::class)
         ->name('reservations.index');
     

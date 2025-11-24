@@ -359,7 +359,7 @@
                     Siguiente →
                 </button>
             @else
-                <button wire:click="submitReservation"
+                <button x-data @click="$wire.submitReservation()"
                     class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-colors">
                     Confirmar Reserva
                 </button>
@@ -369,6 +369,11 @@
 
     <script>
         document.addEventListener('livewire:initialized', () => {
+            // Listen for redirect event
+            Livewire.on('redirect-to-checkout', () => {
+                window.location.href = "{{ route('checkout.payment') }}";
+            });
+
             @this.on('reservation-created', (event) => {
                 Swal.fire({
                     title: '¡Reserva Creada!',

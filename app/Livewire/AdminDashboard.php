@@ -37,23 +37,36 @@ class AdminDashboard extends Component
             ->sum('total_price');
     }
 
-    // Datos para gráfico de Chart.js - Por modelo
+    // Datos para gráfico de Chart.js - Top 3 modelos más reservados
     public function getReservationsByModel()
     {
-        $data = Reservation::join('vehicles', 'reservations.vehicle_id', '=', 'vehicles.id')
-            ->select('vehicles.model', DB::raw('count(*) as total'))
-            ->groupBy('vehicles.model')
-            ->get()
-            ->pluck('total', 'model')
-            ->toArray();
-
-        return [
-            'EcoMoto' => $data['EcoMoto'] ?? 0,
-            'EcoMoto Pro' => $data['EcoMoto Pro'] ?? 0,
-            'EcoScoot Lite' => $data['EcoScoot Lite'] ?? 0,
-            'EcoScoot Max' => $data['EcoScoot Max'] ?? 0,
-            'EcoBike One' => $data['EcoBike One'] ?? 0,
+        // Obtener todos los modelos con sus cantidades de reservas
+        $reservations = Reservation::join('vehicles', 'reservations.vehicle_id', '=', 'vehicles.id')
+            ->select('vehicles.model', 'vehicles.type', DB::raw('count(*) as total'))
+            ->groupBy('vehicles.model', 'vehicles.type')
+            ->orderBy('total', 'desc')
+            ->limit(3) // Solo los 3 más reservados
+            ->get();
+        
+        // Mapeo de nombres internos a nombres amigables para clientes
+        $friendlyNames = [
+            'EcoMoto' => 'Scooter EcoMoto',
+            'EcoMoto Pro' => 'Scooter EcoMoto Pro',
+            'EcoScoot Lite' => 'Scooter Lite',
+            'EcoScoot Max' => 'Scooter Max',
+            'EcoBike One' => 'Bicicleta EcoBike',
+            'EcoMoto Thunder' => 'Moto Thunder',
+            'SpeedRider Pro' => 'Moto SpeedRider',
+            'CityBike Electric' => 'Moto CityBike',
         ];
+        
+        $result = [];
+        foreach ($reservations as $reservation) {
+            $friendlyName = $friendlyNames[$reservation->model] ?? $reservation->model;
+            $result[$friendlyName] = $reservation->total;
+        }
+        
+        return $result;
     }
 
     // Alertas - Vehículos con batería baja

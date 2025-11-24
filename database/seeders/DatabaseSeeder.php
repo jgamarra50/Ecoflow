@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             StationSeeder::class,
             VehicleSeeder::class,
             UserSeeder::class,
+            ReservationSeeder::class,
+            MaintenanceSeeder::class,
             TelemetrySeeder::class,
         ]);
     }

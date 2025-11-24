@@ -23,7 +23,17 @@ class VehicleSeeder extends Seeder
             
             // Floridablanca Station (ID: 3) - 1 vehicle
             ['type' => 'scooter', 'brand' => 'EcoFlow', 'model' => 'EcoScoot Max', 'plate' => 'ECO-005', 'status' => 'available', 'current_location_lat' => 7.0621, 'current_location_lng' => -73.0868, 'station_id' => 3],
+            
+            // Motos Eléctricas - Distributed across stations
+            ['type' => 'motorcycle electric', 'brand' => 'EcoFlow', 'model' => 'EcoMoto Thunder', 'plate' => 'ECO-006', 'status' => 'available', 'current_location_lat' => 7.0799, 'current_location_lng' => -73.0978, 'station_id' => 1],
+            ['type' => 'motorcycle electric', 'brand' => 'EcoFlow', 'model' => 'SpeedRider Pro', 'plate' => 'ECO-007', 'status' => 'available', 'current_location_lat' => 7.1197, 'current_location_lng' => -73.1227, 'station_id' => 2],
+            ['type' => 'motorcycle electric', 'brand' => 'EcoFlow', 'model' => 'CityBike Electric', 'plate' => 'ECO-008', 'status' => 'available', 'current_location_lat' => 7.0621, 'current_location_lng' => -73.0868, 'station_id' => 3],
         ];
+
+        // Asignar imagen aleatoria a cada vehículo según su tipo
+        foreach ($vehicles as &$vehicle) {
+            $vehicle['image'] = \App\Models\Vehicle::getRandomImageByType($vehicle['type']);
+        }
 
         DB::table('vehicles')->insert($vehicles);
     }

@@ -38,6 +38,7 @@ class PublicMap extends Component
             'scooter' => Vehicle::where('status', 'available')->where('type', 'scooter')->count(),
             'skateboard' => Vehicle::where('status', 'available')->where('type', 'skateboard')->count(),
             'bicycle' => Vehicle::where('status', 'available')->where('type', 'bicycle')->count(),
+            'motorcycle electric' => Vehicle::where('status', 'available')->where('type', 'motorcycle electric')->count(),
         ];
     }
 

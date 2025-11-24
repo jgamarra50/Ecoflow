@@ -154,11 +154,11 @@
     </div>
 
     <!-- Map Container -->
-    <div class="flex-1 relative">
-        <div id="tracking-map" wire:ignore style="height: 100%; width: 100%;"></div>
+    <div class="flex-1 relative" style="min-height: 100vh;">
+        <div id="tracking-map" wire:ignore style="height: 100%; width: 100%; min-height: 100vh;"></div>
         
         <!-- Auto-refresh indicator -->
-        <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg px-4 py-2">
+        <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg px-4 py-2 z-[1000]">
             <div class="flex items-center text-sm">
                 <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                 <span class="text-gray-700 font-medium">Actualización en tiempo real</span>

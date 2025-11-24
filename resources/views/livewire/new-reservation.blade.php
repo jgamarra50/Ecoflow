@@ -61,6 +61,10 @@
                             class="px-4 py-2 rounded-md font-medium transition-colors {{ $typeFilter === 'skateboard' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                             🛹 Skateboards
                         </button>
+                        <button wire:click="setTypeFilter('motorcycle electric')"
+                            class="px-4 py-2 rounded-md font-medium transition-colors {{ $typeFilter === 'motorcycle electric' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                            🏍️ Motos Eléctricas
+                        </button>
                     </div>
 
                     <!-- Vehicles Grid -->
@@ -80,10 +84,12 @@
                                     </div>
                                 @endif
 
-                                <!-- Vehicle Image Placeholder -->
+                                {{-- Vehicle Image --}}
                                 <div
-                                    class="mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-lg h-40 flex items-center justify-center pointer-events-none">
-                                    <span class="text-6xl">{{ $vehicle->getTypeIcon() }}</span>
+                                    class="mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-lg h-48 flex items-center justify-center pointer-events-none overflow-hidden">
+                                    <img src="{{ $vehicle->getImageUrl() }}" 
+                                         alt="{{ $vehicle->brand }} {{ $vehicle->model }}"
+                                         class="w-full h-full object-contain p-4">
                                 </div>
 
                                 <!-- Vehicle Info -->

@@ -58,19 +58,26 @@ class CheckoutPayment extends Component
         
         // Validate based on payment method
         if ($this->paymentMethod === 'card') {
+            // Limpiar espacios del número de tarjeta antes de validar
+            $this->cardNumber = str_replace(' ', '', $this->cardNumber);
+            
             $this->validate([
-                'cardNumber' => 'required|regex:/^[0-9]{16}$/',
+                'cardNumber' => ['required', 'digits:16'],
                 'cardName' => 'required|string|min:3',
-                'expiryDate' => 'required|regex:/^(0[1-9]|1[0-2])\/[0-9]{2}$/',
-                'cvv' => 'required|regex:/^[0-9]{3,4}$/',
+                'expiryDate' => ['required', 'size:5', function($attribute, $value, $fail) {
+                    if (!preg_match('/^(0[1-9]|1[0-2])\/[0-9]{2}$/', $value)) {
+                        $fail('Formato inválido. Usa MM/YY');
+                    }
+                }],
+                'cvv' => ['required', 'digits_between:3,4'],
             ], [
                 'cardNumber.required' => 'Ingresa el número de tarjeta',
-                'cardNumber.regex' => 'El número de tarjeta debe tener 16 dígitos',
+                'cardNumber.digits' => 'El número de tarjeta debe tener 16 dígitos',
                 'cardName.required' => 'Ingresa el nombre del titular',
                 'expiryDate.required' => 'Ingresa la fecha de vencimiento',
-                'expiryDate.regex' => 'Formato inválido. Usa MM/YY',
+                'expiryDate.size' => 'La fecha debe tener formato MM/YY',
                 'cvv.required' => 'Ingresa el código CVV',
-                'cvv.regex' => 'El CVV debe tener 3 o 4 dígitos',
+                'cvv.digits_between' => 'El CVV debe tener 3 o 4 dígitos',
             ]);
         } else {
             $this->validate([

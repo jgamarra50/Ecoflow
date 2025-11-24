@@ -71,9 +71,9 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {{-- Chart.js - Reservas por Modelo --}}
+            {{-- Chart.js - Top 3 Reservas --}}
             <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-xl font-bold text-gray-900 mb-4">Reservas por Modelo EcoFlow</h2>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Top 3 Vehículos Más Reservados</h2>
                 <canvas id="reservationsChart" class="w-full" style="max-height: 300px;"></canvas>
             </div>
 
@@ -213,33 +213,32 @@
             const ctx = document.getElementById('reservationsChart').getContext('2d');
             const data = @json($reservationsByModel);
             
+            // Obtener dinámicamente los labels y valores del top 3
+            const labels = Object.keys(data);
+            const values = Object.values(data);
+            
+            // Colores dinámicos basados en la cantidad de items
+            const backgroundColors = [
+                'rgba(59, 130, 246, 0.8)',   // Blue
+                'rgba(16, 185, 129, 0.8)',   // Green
+                'rgba(249, 115, 22, 0.8)',   // Orange
+            ];
+            
+            const borderColors = [
+                'rgba(59, 130, 246, 1)',
+                'rgba(16, 185, 129, 1)',
+                'rgba(249, 115, 22, 1)',
+            ];
+            
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['EcoMoto', 'EcoMoto Pro', 'EcoScoot Lite', 'EcoScoot Max', 'EcoBike One'],
+                    labels: labels,
                     datasets: [{
                         label: 'Número de Reservas',
-                        data: [
-                            data['EcoMoto'], 
-                            data['EcoMoto Pro'], 
-                            data['EcoScoot Lite'], 
-                            data['EcoScoot Max'], 
-                            data['EcoBike One']
-                        ],
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.8)',   // Blue - EcoMoto
-                            'rgba(16, 185, 129, 0.8)',   // Green - EcoMoto Pro
-                            'rgba(249, 115, 22, 0.8)',   // Orange - EcoScoot Lite
-                            'rgba(168, 85, 247, 0.8)',   // Purple - EcoScoot Max
-                            'rgba(236, 72, 153, 0.8)',   // Pink - EcoBike One
-                        ],
-                        borderColor: [
-                            'rgba(59, 130, 246, 1)',
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(249, 115, 22, 1)',
-                            'rgba(168, 85, 247, 1)',
-                            'rgba(236, 72, 153, 1)',
-                        ],
+                        data: values,
+                        backgroundColor: backgroundColors.slice(0, labels.length),
+                        borderColor: borderColors.slice(0, labels.length),
                         borderWidth: 2
                     }]
                 },
@@ -249,6 +248,15 @@
                     plugins: {
                         legend: {
                             display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Top 3 Vehículos Más Reservados',
+                            font: {
+                                size: 14,
+                                weight: 'normal'
+                            },
+                            color: '#6B7280'
                         }
                     },
                     scales: {

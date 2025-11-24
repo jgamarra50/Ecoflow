@@ -10,9 +10,9 @@
         <!-- Stats -->
         <div class="p-4 border-b border-gray-200">
             <h3 class="text-sm font-semibold text-gray-700 mb-3">Vehículos Disponibles</h3>
-            <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="grid grid-cols-3 gap-2 text-sm">
                 <div
-                    class="text-center p-3 rounded-lg {{ $vehicleTypeFilter === 'all' ? 'bg-blue-100 border-2 border-blue-500' : 'bg-gray-50' }}">
+                    class="col-span-3 text-center p-3 rounded-lg {{ $vehicleTypeFilter === 'all' ? 'bg-blue-100 border-2 border-blue-500' : 'bg-gray-50' }}">
                     <div class="text-2xl font-bold text-gray-800">{{ $stats['total'] }}</div>
                     <div class="text-xs text-gray-600">Total</div>
                 </div>
@@ -27,6 +27,11 @@
                 <div class="text-center p-3 rounded-lg bg-gray-50">
                     <div class="text-lg">🚲</div>
                     <div class="font-semibold">{{ $stats['bicycle'] }}</div>
+                </div>
+                <div class="col-span-3 text-center p-3 rounded-lg bg-gray-50">
+                    <div class="text-lg">🏍️</div>
+                    <div class="font-semibold">{{ $stats['motorcycle electric'] ?? 0 }}</div>
+                    <div class="text-xs text-gray-600">Motos</div>
                 </div>
             </div>
         </div>
@@ -54,6 +59,11 @@
                     class="w-full text-left px-4 py-3 rounded-lg transition-colors {{ $vehicleTypeFilter === 'bicycle' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
                     <span class="font-medium">🚲 Bicicletas</span>
                     <span class="float-right">{{ $stats['bicycle'] }}</span>
+                </button>
+                <button wire:click="setVehicleFilter('motorcycle electric')"
+                    class="w-full text-left px-4 py-3 rounded-lg transition-colors {{ $vehicleTypeFilter === 'motorcycle electric' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
+                    <span class="font-medium">🏍️ Motos Eléctricas</span>
+                    <span class="float-right">{{ $stats['motorcycle electric'] ?? 0 }}</span>
                 </button>
             </div>
         </div>
@@ -174,7 +184,8 @@
             const vehicleIcons = {
                 scooter: L.divIcon({ html: '<div style="font-size:28px">🛴</div>', className: 'custom-icon', iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28] }),
                 skateboard: L.divIcon({ html: '<div style="font-size:28px">🛹</div>', className: 'custom-icon', iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28] }),
-                bicycle: L.divIcon({ html: '<div style="font-size:28px">🚲</div>', className: 'custom-icon', iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28] })
+                bicycle: L.divIcon({ html: '<div style="font-size:28px">🚲</div>', className: 'custom-icon', iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28] }),
+                'motorcycle electric': L.divIcon({ html: '<div style="font-size:28px">🏍️</div>', className: 'custom-icon', iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28] })
             };
 
             const showStations = @js($showStations);
@@ -203,8 +214,8 @@
                         const batteryColor = batteryLevel > 60 ? 'green' : (batteryLevel > 30 ? 'yellow' : 'red');
                         const batteryIcon = batteryLevel > 60 ? '🔋' : (batteryLevel > 30 ? '🪫' : '⚠️');
 
-                        const typeEmoji = '{{ $vehicle->type }}' === 'scooter' ? '🛴' : ('{{ $vehicle->type }}' === 'skateboard' ? '🛹' : '🚲');
-                        const typeName = '{{ $vehicle->type }}' === 'scooter' ? 'Scooter' : ('{{ $vehicle->type }}' === 'skateboard' ? 'Skateboard' : 'Bicicleta');
+                        const typeEmoji = '{{ $vehicle->type }}' === 'scooter' ? '🛴' : ('{{ $vehicle->type }}' === 'skateboard' ? '🛹' : ('{{ $vehicle->type }}' === 'motorcycle electric' ? '🏍️' : '🚲'));
+                        const typeName = '{{ $vehicle->type }}' === 'scooter' ? 'Scooter' : ('{{ $vehicle->type }}' === 'skateboard' ? 'Skateboard' : ('{{ $vehicle->type }}' === 'motorcycle electric' ? 'Moto Eléctrica' : 'Bicicleta'));
 
                         const popup = `
                                 <div class="p-3">

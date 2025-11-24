@@ -14,6 +14,7 @@ class Vehicle extends Model
         'brand',
         'model',
         'plate',
+        'image',
         'status',
         'current_location_lat',
         'current_location_lng',
@@ -66,6 +67,7 @@ class Vehicle extends Model
             'scooter' => '🛴',
             'bicycle' => '🚴',
             'skateboard' => '🛹',
+            'motorcycle electric' => '🏍️',
             default => '🚲',
         };
     }
@@ -94,5 +96,38 @@ class Vehicle extends Model
             'damaged' => 'bg-red-100 text-red-800 border-red-300',
             default => 'bg-gray-100 text-gray-800 border-gray-300',
         };
+    }
+
+    // Image helpers
+    public function getImageUrl()
+    {
+        return $this->image ? asset($this->image) : asset('images/vehicles/default.png');
+    }
+
+    public static function getRandomImageByType($type)
+    {
+        $images = [
+            'scooter' => [
+                'images/vehicles/Scooters.jpeg',
+                'images/vehicles/Scooter2.png',
+                'images/vehicles/Scooter3.jpeg',
+            ],
+            'bicycle' => [
+                'images/vehicles/Bicicletas1.jpeg',
+                'images/vehicles/Bicicletas2.jpeg',
+                'images/vehicles/Bicicletas3.jpeg',
+            ],
+            'motorcycle electric' => [
+                'images/vehicles/motoElectrica1.jpeg',
+                'images/vehicles/motoElectrica2.jpeg',
+                'images/vehicles/motoElectrica3.jpeg',
+            ],
+            'skateboard' => [
+                'images/vehicles/Scooters.jpeg', // Usar scooter como placeholder
+            ],
+        ];
+
+        $typeImages = $images[$type] ?? $images['scooter'];
+        return $typeImages[array_rand($typeImages)];
     }
 }

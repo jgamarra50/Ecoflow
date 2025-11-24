@@ -115,7 +115,7 @@ class VehiclesManager extends Component
     public function save()
     {
         $rules = [
-            'type' => 'required|in:scooter,bicycle,skateboard',
+            'type' => 'required|in:scooter,bicycle,skateboard,motorcycle electric',
             'brand' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'plate' => 'required|string|max:255|unique:vehicles,plate,' . $this->vehicleId,
@@ -137,6 +137,11 @@ class VehiclesManager extends Component
             'current_location_lat' => $this->current_location_lat ?: null,
             'current_location_lng' => $this->current_location_lng ?: null,
         ];
+
+        // Asignar imagen aleatoria al crear nuevo vehículo
+        if (!$this->editMode) {
+            $data['image'] = Vehicle::getRandomImageByType($this->type);
+        }
 
         if ($this->editMode) {
             Vehicle::find($this->vehicleId)->update($data);

@@ -34,6 +34,7 @@
                         <option value="scooter">🛴 Scooters</option>
                         <option value="bicycle">🚴 Bicicletas</option>
                         <option value="skateboard">🛹 Skateboards</option>
+                        <option value="motorcycle electric">🏍️ Motos Eléctricas</option>
                     </select>
                 </div>
 
@@ -103,7 +104,8 @@
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full 
                                         {{ $vehicle->type === 'scooter' ? 'bg-blue-100 text-blue-800' : '' }}
                                         {{ $vehicle->type === 'bicycle' ? 'bg-green-100 text-green-800' : '' }}
-                                        {{ $vehicle->type === 'skateboard' ? 'bg-orange-100 text-orange-800' : '' }}">
+                                        {{ $vehicle->type === 'skateboard' ? 'bg-orange-100 text-orange-800' : '' }}
+                                        {{ $vehicle->type === 'motorcycle electric' ? 'bg-purple-100 text-purple-800' : '' }}">
                                         {{ ucfirst($vehicle->type) }}
                                     </span>
                                 </td>
@@ -240,6 +242,7 @@
                                     <option value="scooter">🛴 Scooter</option>
                                     <option value="bicycle">🚴 Bicicleta</option>
                                     <option value="skateboard">🛹 Skateboard</option>
+                                    <option value="motorcycle electric">🏍️ Moto Eléctrica</option>
                                 </select>
                                 @error('type') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>

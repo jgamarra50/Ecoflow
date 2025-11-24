@@ -12,16 +12,18 @@
         'scooter' => '🛴',
         'skateboard' => '🛹',
         'bicycle' => '🚲',
+        'motorcycle electric' => '🏍️',
     ];
 
     $colors = [
         'scooter' => 'from-blue-100 to-blue-200',
         'skateboard' => 'from-purple-100 to-purple-200',
         'bicycle' => 'from-green-100 to-green-200',
+        'motorcycle electric' => 'from-red-100 to-red-200',
     ];
 @endphp
 
-<div {{ $attributes->merge(['class' => 'relative rounded-lg bg-gradient-to-br ' . $colors[$type] . ' flex items-center justify-center ' . $sizes[$size]]) }}>
-    <span class="text-5xl">{{ $icons[$type] }}</span>
+<div {{ $attributes->merge(['class' => 'relative rounded-lg bg-gradient-to-br ' . ($colors[$type] ?? 'from-gray-100 to-gray-200') . ' flex items-center justify-center ' . $sizes[$size]]) }}>
+    <span class="text-5xl">{{ $icons[$type] ?? '🚲' }}</span>
     <div class="absolute inset-0 bg-white bg-opacity-10 rounded-lg"></div>
 </div>

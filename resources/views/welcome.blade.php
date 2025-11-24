@@ -152,6 +152,156 @@
         </div>
     </section>
 
+    <!-- Our Services Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
+                <p class="text-xl text-gray-600">Vehículos eléctricos y plataforma digital completa</p>
+            </div>
+
+            <!-- Vehicle Types -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Bicycles -->
+                <div
+                    class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all">
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Bicicletas Eléctricas</h3>
+                    <p class="text-gray-600 mb-4">Bicicletas de alta calidad con asistencia eléctrica para recorridos
+                        urbanos cómodos y eficientes.</p>
+                    <div class="text-sm text-green-600 font-semibold">Desde $50,000 COP/día</div>
+                </div>
+
+                <!-- Scooters -->
+                <div
+                    class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all">
+                    <div class="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Patinetas Eléctricas</h3>
+                    <p class="text-gray-600 mb-4">Patinetas compactas y ágiles, ideales para distancias cortas y
+                        desplazamientos rápidos en la ciudad.</p>
+                    <div class="text-sm text-teal-600 font-semibold">Desde $50,000 COP/día</div>
+                </div>
+
+                <!-- Monowheels -->
+                <div
+                    class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all">
+                    <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Monopatines Eléctricos</h3>
+                    <p class="text-gray-600 mb-4">Monopatines de última generación con mayor autonomía para recorridos
+                        más largos y aventuras urbanas.</p>
+                    <div class="text-sm text-blue-600 font-semibold">Desde $50,000 COP/día</div>
+                </div>
+            </div>
+
+            <!-- Platform Features -->
+            <div class="bg-gradient-to-br from-gray-50 to-green-50 rounded-3xl p-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Funcionalidades de la Plataforma</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Reservas en Línea</h4>
+                            <p class="text-gray-600 text-sm">Sistema de reservas fácil e intuitivo disponible 24/7 desde
+                                tu dispositivo</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Pagos Seguros</h4>
+                            <p class="text-gray-600 text-sm">Múltiples métodos de pago con encriptación SSL y protección
+                                de datos</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Ubicación en Tiempo Real</h4>
+                            <p class="text-gray-600 text-sm">Mapa interactivo para encontrar vehículos disponibles cerca
+                                de ti</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Rastreo de Vehículos</h4>
+                            <p class="text-gray-600 text-sm">Seguimiento GPS de tu vehículo alquilado durante todo el
+                                periodo de renta</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Servicio de Entrega</h4>
+                            <p class="text-gray-600 text-sm">Opción de entrega a domicilio o recogida en nuestras 4
+                                sedes</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Soporte al Cliente</h4>
+                            <p class="text-gray-600 text-sm">Atención personalizada 24/7 para resolver cualquier
+                                inquietud o problema</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="servicios" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,7 +412,13 @@
                 <!-- Station 1 -->
                 <div
                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-green-500">
-                    <div class="text-4xl mb-4">📍</div>
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Cabecera</h3>
                     <p class="text-gray-600 text-sm mb-4">Parque San Pío - Calle 45 #35-20</p>
                     <div class="flex items-center text-green-600 text-sm font-semibold">
@@ -278,7 +434,13 @@
                 <!-- Station 2 -->
                 <div
                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-teal-500">
-                    <div class="text-4xl mb-4">📍</div>
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Floridablanca Centro</h3>
                     <p class="text-gray-600 text-sm mb-4">Parque Principal - Carrera 7 #10-15</p>
                     <div class="flex items-center text-teal-600 text-sm font-semibold">
@@ -294,7 +456,13 @@
                 <!-- Station 3 -->
                 <div
                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-500">
-                    <div class="text-4xl mb-4">📍</div>
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Girón</h3>
                     <p class="text-gray-600 text-sm mb-4">Parque Las Nieves - Calle 30 #25-42</p>
                     <div class="flex items-center text-blue-600 text-sm font-semibold">
@@ -310,7 +478,13 @@
                 <!-- Station 4 -->
                 <div
                     class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-purple-500">
-                    <div class="text-4xl mb-4">📍</div>
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Piedecuesta</h3>
                     <p class="text-gray-600 text-sm mb-4">Centro Comercial - Carrera 5 #8-30</p>
                     <div class="flex items-center text-purple-600 text-sm font-semibold">

@@ -120,17 +120,19 @@
                     </h3>
                     @if($pendingMaintenance->count() > 0)
                         <div class="space-y-2">
-                            @foreach($pendingMaintenance as $vehicle)
+                            @foreach($pendingMaintenance as $maintenance)
                                 <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-md">
                                     <div class="flex items-center">
-                                        <span class="text-2xl mr-3">{{ $vehicle->getTypeIcon() }}</span>
+                                        <span class="text-2xl mr-3">{{ $maintenance->vehicle->getTypeIcon() }}</span>
                                         <div>
-                                            <p class="font-medium text-gray-900">{{ $vehicle->brand }} {{ $vehicle->model }}</p>
-                                            <p class="text-sm text-gray-600">{{ $vehicle->plate }}</p>
+                                            <p class="font-medium text-gray-900">
+                                                {{ $maintenance->vehicle->brand }} {{ $maintenance->vehicle->model }}
+                                            </p>
+                                            <p class="text-sm text-gray-600">{{ $maintenance->vehicle->plate }}</p>
                                         </div>
                                     </div>
-                                    <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $vehicle->status === 'maintenance' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800' }}">
-                                        {{ $vehicle->status === 'maintenance' ? 'Mantenimiento' : 'Dañado' }}
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $maintenance->getStatusColorClass() }}">
+                                        {{ $maintenance->getStatusLabel() }}
                                     </span>
                                 </div>
                             @endforeach

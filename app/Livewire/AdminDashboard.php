@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Vehicle;
 use App\Models\Reservation;
 use App\Models\Telemetry;
+use App\Models\Maintenance;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -68,8 +69,9 @@ class AdminDashboard extends Component
     // Alertas - Vehículos que necesitan mantenimiento
     public function getPendingMaintenance()
     {
-        return Vehicle::where('status', 'maintenance')
-            ->orWhere('status', 'damaged')
+        return Maintenance::with('vehicle')
+            ->whereIn('status', ['pending', 'assigned', 'in_progress'])
+            ->latest()
             ->get();
     }
 

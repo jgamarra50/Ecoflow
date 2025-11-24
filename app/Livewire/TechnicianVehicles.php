@@ -131,6 +131,11 @@ class TechnicianVehicles extends Component
 
     public function updateVehicleStatus($vehicleId, $status)
     {
+        \Log::info('updateVehicleStatus llamado', [
+            'vehicle_id' => $vehicleId,
+            'status' => $status,
+        ]);
+
         $vehicle = Vehicle::findOrFail($vehicleId);
         $vehicle->update(['status' => $status]);
 

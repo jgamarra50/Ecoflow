@@ -121,29 +121,36 @@
 
                         {{-- Quick Status Update --}}
                         <div x-data="{ open: false }" class="relative">
-                            <button type="button" @click.prevent="open = !open"
+                            <button type="button" @click="open = !open"
                                 class="w-full px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors">
                                 Cambiar Estado
                             </button>
                             <div x-show="open" @click.outside="open = false"
-                                class="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-md shadow-xl z-50 border border-gray-200 py-1"
-                                style="display: none;">
-                                <div wire:click="updateVehicleStatus({{ $vehicle->id }}, 'available')" @click="open = false"
-                                    class="px-4 py-2 text-sm text-gray-700 hover:bg-green-50 cursor-pointer">
+                                class="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-md shadow-xl z-50 border border-gray-200 py-1">
+                                <button type="button"
+                                    wire:click="updateVehicleStatus({{ $vehicle->id }}, 'available')"
+                                    @click="open = false"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-green-50 cursor-pointer">
                                     🟢 Disponible
-                                </div>
-                                <div wire:click="updateVehicleStatus({{ $vehicle->id }}, 'maintenance')" @click="open = false"
-                                    class="px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 cursor-pointer">
+                                </button>
+                                <button type="button"
+                                    wire:click="updateVehicleStatus({{ $vehicle->id }}, 'maintenance')"
+                                    @click="open = false"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 cursor-pointer">
                                     🟡 Mantenimiento
-                                </div>
-                                <div wire:click="updateVehicleStatus({{ $vehicle->id }}, 'charging')" @click="open = false"
-                                    class="px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 cursor-pointer">
+                                </button>
+                                <button type="button"
+                                    wire:click="updateVehicleStatus({{ $vehicle->id }}, 'charging')"
+                                    @click="open = false"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 cursor-pointer">
                                     🔵 Cargando
-                                </div>
-                                <div wire:click="updateVehicleStatus({{ $vehicle->id }}, 'damaged')" @click="open = false"
-                                    class="px-4 py-2 text-sm text-gray-700 hover:bg-red-50 cursor-pointer">
+                                </button>
+                                <button type="button"
+                                    wire:click="updateVehicleStatus({{ $vehicle->id }}, 'damaged')"
+                                    @click="open = false"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-50 cursor-pointer">
                                     🔴 Dañado
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>

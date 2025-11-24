@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('brand');
             $table->string('model');
             $table->string('plate')->unique();
-            $table->enum('status', ['available', 'maintenance', 'reserved', 'damaged'])->default('available');
+            $table->enum('status', ['available', 'maintenance', 'reserved', 'damaged', 'in_use', 'charging'])->default('available');
             $table->decimal('current_location_lat', 10, 7)->nullable();
             $table->decimal('current_location_lng', 10, 7)->nullable();
             $table->foreignId('station_id')->nullable()->constrained('stations')->onDelete('set null');

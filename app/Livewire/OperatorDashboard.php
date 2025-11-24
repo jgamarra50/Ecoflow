@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OperatorDashboard extends Component
 {
+    public $activeTab = 'deliveries';
+
     // QR Scanner Form
     public $plateInput = '';
     public $scanMode = 'delivery'; // 'delivery' or 'return'

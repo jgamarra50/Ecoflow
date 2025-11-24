@@ -3,17 +3,25 @@
 namespace App\Livewire;
 
 use App\Models\Maintenance;
+use App\Services\MaintenanceVehicleStatusService;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
 
 class TechnicianDashboard extends Component
 {
+    protected MaintenanceVehicleStatusService $maintenanceVehicleStatusService;
+
     public $statusFilter = 'all';
     public $showDetailsModal = false;
     public $selectedMaintenanceId;
     public $notes = '';
 
     protected $listeners = ['maintenanceUpdated'];
+
+    public function boot(MaintenanceVehicleStatusService $maintenanceVehicleStatusService)
+    {
+        $this->maintenanceVehicleStatusService = $maintenanceVehicleStatusService;
+    }
 
     public function updatingStatusFilter()
     {
@@ -75,6 +83,8 @@ class TechnicianDashboard extends Component
         
         $maintenance->update($data);
 
+        $this->maintenanceVehicleStatusService->syncVehicleStatus($maintenance);
+
         Log::info('Estado de mantenimiento actualizado por técnico', [
             'maintenance_id' => $maintenance->id,
             'technician' => auth()->user()->name,
@@ -111,6 +121,8 @@ class TechnicianDashboard extends Component
             'completed_at' => now(),
             'notes' => $this->notes
         ]);
+
+        $this->maintenanceVehicleStatusService->syncVehicleStatus($maintenance);
 
         Log::info('Mantenimiento completado', [
             'maintenance_id' => $maintenance->id,

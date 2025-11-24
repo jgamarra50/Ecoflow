@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Maintenance;
 use App\Models\User;
 use App\Models\Vehicle;
+use App\Services\MaintenanceVehicleStatusService;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Log;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Log;
 class MaintenancesManager extends Component
 {
     use WithPagination;
+
+    protected MaintenanceVehicleStatusService $maintenanceVehicleStatusService;
+
+    public function boot(MaintenanceVehicleStatusService $maintenanceVehicleStatusService)
+    {
+        $this->maintenanceVehicleStatusService = $maintenanceVehicleStatusService;
+    }
 
     // Filtros
     public $statusFilter = 'all';
@@ -95,6 +103,8 @@ class MaintenancesManager extends Component
             'assigned_at' => now(),
         ]);
 
+        $this->maintenanceVehicleStatusService->syncVehicleStatus($maintenance);
+
         // Notificar al técnico (simulado con log)
         $this->notifyTechnician($maintenance->fresh(['vehicle', 'technician']));
 
@@ -116,6 +126,8 @@ class MaintenancesManager extends Component
         }
         
         $maintenance->update($updateData);
+
+        $this->maintenanceVehicleStatusService->syncVehicleStatus($maintenance);
 
         Log::info('Estado de mantenimiento cambiado', [
             'maintenance_id' => $maintenance->id,

@@ -38,6 +38,12 @@ class RoleSeeder extends Seeder
             'ver-mantenimientos',
             'actualizar-mantenimiento',
             'actualizar-estado-vehiculo',
+            
+            // Repartidor permissions
+            'ver-entregas',
+            'actualizar-entrega',
+            'completar-entrega',
+            'gestionar-disponibilidad',
         ];
 
         // Create all permissions
@@ -73,6 +79,14 @@ class RoleSeeder extends Seeder
             'ver-mantenimientos',
             'actualizar-mantenimiento',
             'actualizar-estado-vehiculo',
+        ]);
+
+        $repartidorRole = Role::firstOrCreate(['name' => 'repartidor']);
+        $repartidorRole->givePermissionTo([
+            'ver-entregas',
+            'actualizar-entrega',
+            'completar-entrega',
+            'gestionar-disponibilidad',
         ]);
     }
 }

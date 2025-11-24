@@ -46,6 +46,11 @@ class Reservation extends Model
         return $this->belongsTo(Station::class);
     }
 
+    public function deliveries()
+    {
+        return $this->hasMany(\App\Models\Delivery::class);
+    }
+
     // Helper methods
     public function isActive()
     {
@@ -120,5 +125,15 @@ class Reservation extends Model
             'pickup_fee' => $pickupFee,
             'total' => $this->total_price,
         ];
+    }
+
+    public function needsDelivery()
+    {
+        return $this->delivery_method === 'delivery';
+    }
+
+    public function needsPickup()
+    {
+        return in_array($this->delivery_method, ['pickup', 'delivery']);
     }
 }

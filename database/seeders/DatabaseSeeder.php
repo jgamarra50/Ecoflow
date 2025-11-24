@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ReservationSeeder::class,
             MaintenanceSeeder::class,
             TelemetrySeeder::class,
+            DeliverySeeder::class,
         ]);
     }
 }

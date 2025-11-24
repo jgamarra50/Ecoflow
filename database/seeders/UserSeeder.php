@@ -95,5 +95,38 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
         $tecnico2->assignRole('tecnico');
+
+        // Repartidor users
+        $repartidor1 = User::create([
+            'name' => 'Miguel Ángel Torres',
+            'email' => 'repartidor1@test.com',
+            'password' => Hash::make('password'),
+            'phone' => '3701234567',
+            'address' => 'Calle 38 #12-25, Bucaramanga',
+            'role' => 'repartidor',
+            'is_available' => true,
+            'shift_start' => '08:00:00',
+            'shift_end' => '18:00:00',
+            'vehicle_type' => 'moto',
+            'license_number' => 'ABC123',
+            'email_verified_at' => now(),
+        ]);
+        $repartidor1->assignRole('repartidor');
+
+        $repartidor2 = User::create([
+            'name' => 'Sandra Morales',
+            'email' => 'repartidor2@test.com',
+            'password' => Hash::make('password'),
+            'phone' => '3801234567',
+            'address' => 'Carrera 15 #45-30, Floridablanca',
+            'role' => 'repartidor',
+            'is_available' => true,
+            'shift_start' => '10:00:00',
+            'shift_end' => '20:00:00',
+            'vehicle_type' => 'carro',
+            'license_number' => 'XYZ789',
+            'email_verified_at' => now(),
+        ]);
+        $repartidor2->assignRole('repartidor');
     }
 }

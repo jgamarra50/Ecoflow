@@ -108,6 +108,25 @@ class CheckoutPayment extends Component
             'total_price' => $this->reservationData['total_price'],
         ]);
 
+        // If delivery method is 'delivery', create a delivery record
+        if ($this->reservationData['delivery_method'] === 'delivery') {
+            // Find an available delivery person
+            $deliveryPerson = \App\Models\User::where('role', 'repartidor')
+                ->where('is_available', true)
+                ->inRandomOrder()
+                ->first();
+            
+            \App\Models\Delivery::create([
+                'reservation_id' => $reservation->id,
+                'delivery_person_id' => $deliveryPerson ? $deliveryPerson->id : null,
+                'type' => 'delivery',
+                'status' => $deliveryPerson ? 'assigned' : 'pending',
+                'scheduled_time' => $this->reservationData['start_date'],
+                'delivery_address' => $this->reservationData['delivery_address'],
+                'delivery_fee' => 10000, // Standard delivery fee
+            ]);
+        }
+
         // Clear session data
         session()->forget('reservation_data');
         

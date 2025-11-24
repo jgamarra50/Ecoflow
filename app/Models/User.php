@@ -66,12 +66,17 @@ class User extends Authenticatable
         return $this->belongsTo(\App\Models\Station::class);
     }
 
+    public function deliveries()
+    {
+        return $this->hasMany(\App\Models\Delivery::class, 'delivery_person_id');
+    }
+
     /**
      * Assign default role to user on creation
      */
     public function assignDefaultRole(string $roleName = 'cliente'): void
     {
-        if (!$this->hasAnyRole(['admin', 'cliente', 'operador', 'tecnico'])) {
+        if (!$this->hasAnyRole(['admin', 'cliente', 'operador', 'tecnico', 'repartidor'])) {
             $this->assignRole($roleName);
             $this->role = $roleName;
             $this->save();
@@ -98,5 +103,30 @@ class User extends Authenticatable
             return strtoupper(substr($words[0], 0, 1) . substr($words[1], 0, 1));
         }
         return strtoupper(substr($this->name, 0, 2));
+    }
+
+    /**
+     * Delivery driver specific methods
+     */
+    public function isAvailableForDelivery()
+    {
+        return $this->is_available && $this->hasRole('repartidor');
+    }
+
+    public function hasActiveDeliveries()
+    {
+        return $this->deliveries()
+            ->whereIn('status', ['assigned', 'in_transit', 'arrived'])
+            ->exists();
+    }
+
+    public function updateDeliveryStats()
+    {
+        $totalDeliveries = $this->deliveries()
+            ->where('status', 'delivered')
+            ->count();
+        
+        $this->total_deliveries = $totalDeliveries;
+        $this->save();
     }
 }

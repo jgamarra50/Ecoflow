@@ -134,14 +134,18 @@ class NewReservation extends Component
 
     public function checkAvailability()
     {
+        // Parse dates to ensure proper format for database query
+        $startDate = Carbon::parse($this->startDate)->format('Y-m-d H:i:s');
+        $endDate = Carbon::parse($this->endDate)->format('Y-m-d H:i:s');
+        
         $conflicts = Reservation::where('vehicle_id', $this->selectedVehicleId)
             ->whereIn('status', ['active', 'confirmed'])
-            ->where(function($q) {
-                $q->whereBetween('start_date', [$this->startDate, $this->endDate])
-                  ->orWhereBetween('end_date', [$this->startDate, $this->endDate])
-                  ->orWhere(function($q) {
-                      $q->where('start_date', '<=', $this->startDate)
-                        ->where('end_date', '>=', $this->endDate);
+            ->where(function($q) use ($startDate, $endDate) {
+                $q->whereBetween('start_date', [$startDate, $endDate])
+                  ->orWhereBetween('end_date', [$startDate, $endDate])
+                  ->orWhere(function($q) use ($startDate, $endDate) {
+                      $q->where('start_date', '<=', $startDate)
+                        ->where('end_date', '>=', $endDate);
                   });
             })
             ->exists();

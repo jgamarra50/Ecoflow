@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return redirect()->route('operator.dashboard');
         } elseif ($user->hasRole('tecnico')) {
             return redirect()->route('technician.dashboard');
+        } elseif ($user->hasRole('repartidor')) {
+            return redirect()->route('repartidor.dashboard');
         } else {
             // Por defecto, cliente
             return view('dashboard');
@@ -98,6 +100,15 @@ Route::middleware(['auth', 'verified', 'role:operador'])->prefix('operator')->gr
     Route::get('/dashboard', \App\Livewire\OperatorDashboard::class)->name('operator.dashboard');
     Route::get('/deliveries', \App\Livewire\OperatorDeliveries::class)->name('operator.deliveries');
     Route::get('/reports', \App\Livewire\OperatorReports::class)->name('operator.reports');
+});
+
+// Repartidor Routes
+Route::middleware(['auth', 'verified', 'role:repartidor'])->prefix('repartidor')->group(function () {
+    Route::get('/dashboard', \App\Livewire\DeliveryDashboard::class)->name('repartidor.dashboard');
+    Route::get('/deliveries', \App\Livewire\DeliveryList::class)->name('repartidor.deliveries');
+    Route::get('/delivery/{id}', \App\Livewire\DeliveryDetail::class)->name('repartidor.delivery');
+    Route::get('/history', \App\Livewire\DeliveryHistory::class)->name('repartidor.history');
+    Route::get('/performance', \App\Livewire\DeliveryPerformance::class)->name('repartidor.performance');
 });
 
 require __DIR__.'/auth.php';

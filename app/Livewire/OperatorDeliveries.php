@@ -43,22 +43,17 @@ class OperatorDeliveries extends Component
 
     public function getPendingDeliveriesProperty()
     {
-        if (!$this->stationId) return collect();
-
+        // Show all confirmed reservations that need delivery or are ready for pickup
         return Reservation::with(['vehicle', 'user'])
-            ->where('station_id', $this->stationId)
             ->where('status', 'confirmed')
-            ->whereDate('start_date', '<=', Carbon::today())
             ->orderBy('start_date')
             ->get();
     }
 
     public function getPendingReturnsProperty()
     {
-        if (!$this->stationId) return collect();
-
+        // Show all active reservations (vehicle was delivered and is in use)
         return Reservation::with(['vehicle', 'user'])
-            ->where('station_id', $this->stationId)
             ->where('status', 'active')
             ->orderBy('end_date')
             ->get();
